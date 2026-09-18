@@ -9,34 +9,36 @@ def createSignature(message, sharedKey):
      
     hashMessage = messageHash(message)
 
-    encryptedMessage = sendMessage(hashMessage, sharedKey)
+    sendMessage(hashMessage, sharedKey, "encryptedFile.txt")
 
+    encryptedFile = open("encryptedFile.txt", "r")
+    encryptedMessage = encryptedFile.read()
+    
     signatureFile = open("signatureFile.txt", "w")
     signatureFile.write(encryptedMessage)
-    signatureFile.write("\n" + str(sharedKey))
     signatureFile.close()
 
-    dataFile = open("dataFile.txt", "w")
-    dataFile.write(message)
-    dataFile.close()
+    #dataFile = open("dataFile.txt", "w")
+    #dataFile.write(message)
+    #dataFile.close()
 
 
-def receiveSignature():
+def receiveSignature(sharedKey):
     signatureFile = open("signatureFile.txt", "r")
-    receivedSignature = signatureFile.readlines()
+    receivedSignature = signatureFile.read()
     signatureFile.close()
 
-    dataFile = open("dataFile.txt", "r")
+    dataFile = open("public.txt", "r")
     receivedData = dataFile.read()
     dataFile.close()
     dataHashed = messageHash(receivedData)
 
-    signatureHash = readMessage(receivedSignature[0], int(receivedSignature[1]))
+    signatureHash = readMessage(receivedSignature, sharedKey)
 
     if dataHashed == signatureHash:
-        print("data verified.")
+        return True
     else:
-        print("Error. Data and signature doesn't match.")
+        return False
 
 
 while __name__ == "__main__":

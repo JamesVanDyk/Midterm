@@ -1,4 +1,4 @@
-def sendMessage(message, sharedKey):
+def sendMessage(message, sharedKey, file):
     cypher = [ord(char) for char in message]
     
     encryptedMessage = []
@@ -6,7 +6,7 @@ def sendMessage(message, sharedKey):
     for char in cypher:
         encryptedMessage.append(char*sharedKey)
     
-    encryptedFile = open("encryptedFile.txt", 'w')
+    encryptedFile = open(file, 'w')
 
     for char in encryptedMessage:
         encryptedFile.write(str(char) + " ")
