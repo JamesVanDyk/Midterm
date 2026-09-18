@@ -6,7 +6,3 @@ def messageHash(message):
     hashString = hashlib.sha256(byteString).hexdigest()
 
     return hashString
-
-while __name__ == "__main__":
-    message = input("hash enter your message. ")
-    print(messageHash(message))

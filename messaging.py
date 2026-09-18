@@ -23,7 +23,6 @@ def writeToTwo():
     userTwoFile.close()
     return
 
-
 while __name__ == "__main__":
     #get messager info, message and encrypt it
     userNum = input("User 1 or 2? (enter only the number) ")

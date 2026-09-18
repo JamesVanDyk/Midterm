@@ -2,9 +2,6 @@ from hashing import messageHash
 from encryption import sendMessage
 from decryption import readMessage
 
-
-
-
 def createSignature(message, sharedKey):
      
     hashMessage = messageHash(message)
@@ -17,11 +14,6 @@ def createSignature(message, sharedKey):
     signatureFile = open("signatureFile.txt", "w")
     signatureFile.write(encryptedMessage)
     signatureFile.close()
-
-    #dataFile = open("dataFile.txt", "w")
-    #dataFile.write(message)
-    #dataFile.close()
-
 
 def receiveSignature(sharedKey):
     signatureFile = open("signatureFile.txt", "r")
@@ -39,7 +31,6 @@ def receiveSignature(sharedKey):
         return True
     else:
         return False
-
 
 while __name__ == "__main__":
     sendOrReceive = input("send or receive signature? (s or r) ")

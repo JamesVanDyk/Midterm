@@ -12,7 +12,3 @@ def sendMessage(message, sharedKey, file):
         encryptedFile.write(str(char) + " ")
 
     encryptedFile.close()
-
-while __name__ == "__main__":
-    message = input("write your message to send ")
-    sendMessage(message)
